@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>商品一覧</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="page-header wrapper">
+    <h1><a href="product-list.html">stationery shop</a></h1>
+    <ul class="main-nav">
+        <li><a href="product-list.html">リスト</a></li>
+        <li><a href="insert.html">商品新規登録</a></li>
+        <li><a href="login.html" id="logout">ログアウト</a></li>
+    </ul>
+</header>
+
+<div class="page-title">
+    <h1>商品一覧</h1>
+    <p id="emsg" style="color:red;"></p>
+</div>
+
+<div class="wrapper grid" id="product-list">
+    <!-- JavaScriptで商品を挿入 -->
+</div>
+
+<script>
+// ▼ 本来はサーバーからもらうデータをサンプルとして定義
+const products = [
+    { id: 1, name: "ボールペン", image: "img/ballpen.jpg" },
+    { id: 2, name: "ノート", image: "img/note.jpg" },
+    { id: 3, name: "消しゴム", image: "img/keshigomu.jpg" }
+];
+
+// ▼ エラーメッセージ（必要なら JS でセット）
+const errorMessage = "";   // 例: "データが見つかりません"
+
+// ▼ 通知メッセージ（必要なら JS でアラート表示）
+const message = "";        // 例: "登録しました"
+
+// ▼ 商品一覧を生成
+const listContainer = document.getElementById("product-list");
+
+products.forEach(product => {
+    const div = document.createElement("div");
+    div.className = "product";
+    div.innerHTML = `
+        <a href="detail.html?id=${product.id}">
+            <img src="${product.image}" alt="${product.name}">
+        </a>
+    `;
+    listContainer.appendChild(div);
+});
+
+// ▼ エラーメッセージ
+if (errorMessage) {
+    document.getElementById("emsg").textContent = errorMessage;
+}
+
+// ▼ 通知メッセージ
+if (message) {
+    alert(message);
+}
+</script>
+
+</body>
+</html>
